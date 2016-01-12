@@ -47,6 +47,9 @@ add_executable(RHSWordDetector RHSWordDetector.cpp)
 add_executable(GRWordDetector GRWordDetector.cpp)
 add_executable(GRHWordDetector GRHWordDetector.cpp)
 add_executable(GRHSWordDetector GRHSWordDetector.cpp)
+add_executable(WordCharDetector WordCharDetector.cpp)
+add_executable(HWordCharDetector HWordCharDetector.cpp)
+add_executable(HSWordCharDetector HSWordCharDetector.cpp)
 
 
 target_link_libraries(WordDetector openblas)
@@ -59,4 +62,7 @@ target_link_libraries(RHSWordDetector openblas)
 target_link_libraries(GRWordDetector openblas)
 target_link_libraries(GRHWordDetector openblas)
 target_link_libraries(GRHSWordDetector openblas)
+target_link_libraries(WordCharDetector openblas)
+target_link_libraries(HWordCharDetector openblas)
+target_link_libraries(HSWordCharDetector openblas)
 
