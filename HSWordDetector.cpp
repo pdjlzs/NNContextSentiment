@@ -18,6 +18,7 @@ Labeler::Labeler() {
 
 Labeler::~Labeler() {
   // TODO Auto-generated destructor stub
+  m_classifier.release();
 }
 
 int Labeler::createAlphabet(const vector<Instance>& vecInsts) {
@@ -404,7 +405,7 @@ void Labeler::train(const string& trainFile, const string& devFile, const string
   }
 
   NRMat<dtype> charhEmb;
-  charhEmb.resize(m_charAlphabet.size(), m_options.wordEmbSize);
+  charhEmb.resize(m_charAlphabet.size(), m_options.charEmbSize);
   charhEmb.randu(1001);
 
   m_classifier.init(wordEmb, wordhEmb, m_options.wordcontext, m_labelAlphabet.size(), m_options.wordHiddenSize, m_options.hiddenSize);
@@ -466,7 +467,7 @@ void Labeler::train(const string& trainFile, const string& devFile, const string
         eval.correct_label_count += m_classifier._eval.correct_label_count;
 
         if ((curUpdateIter + 1) % m_options.verboseIter == 0) {
-          m_classifier.checkgrads(subExamples, curUpdateIter+1);
+          //m_classifier.checkgrads(subExamples, curUpdateIter+1);
           std::cout << "current: " << updateIter + 1 << ", total instances: " << inputSize << std::endl;
           std::cout << "Cost = " << cost << ", SA Correct(%) = " << eval.getAccuracy() << std::endl;
         }
@@ -482,7 +483,7 @@ void Labeler::train(const string& trainFile, const string& devFile, const string
         }
         int curUpdateIter = iter * m_options.verboseIter + updateIter;
         cost += m_classifier.process(subExamples, curUpdateIter);
-       //m_classifier.checkgrads(subExamples, curUpdateIter);
+        //m_classifier.checkgrads(subExamples, curUpdateIter);
         eval.overall_label_count += m_classifier._eval.overall_label_count;
         eval.correct_label_count += m_classifier._eval.correct_label_count;
 

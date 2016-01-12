@@ -19,6 +19,7 @@ Labeler::Labeler() {
 
 Labeler::~Labeler() {
   // TODO Auto-generated destructor stub
+  m_classifier.release();
 }
 
 int Labeler::createAlphabet(const vector<Instance>& vecInsts) {
@@ -475,7 +476,7 @@ void Labeler::train(const string& trainFile, const string& devFile, const string
         }
         int curUpdateIter = iter * m_options.verboseIter + updateIter;
         cost += m_classifier.process(subExamples, curUpdateIter);
-       //m_classifier.checkgrads(subExamples, curUpdateIter);
+        //m_classifier.checkgrads(subExamples, curUpdateIter);
         eval.overall_label_count += m_classifier._eval.overall_label_count;
         eval.correct_label_count += m_classifier._eval.correct_label_count;
 

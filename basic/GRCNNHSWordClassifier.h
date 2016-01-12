@@ -804,7 +804,7 @@ public:
 	}
 
 	inline void setWordEmbFinetune(bool b_wordEmb_finetune) {
-		_b_wordEmb_finetune = b_wordEmb_finetune;
+		_words.setEmbFineTune(b_wordEmb_finetune);
 	}
 
 	inline void resetRemove(int remove) {

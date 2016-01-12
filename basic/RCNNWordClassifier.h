@@ -207,7 +207,7 @@ public:
 					wordrepresent[idy] += wordprime[idy];
 				}
 
-				windowlized(wordrepresent, input, window);
+				windowlized(wordrepresent, input, curcontext);
 
 				_rnn_left.ComputeForwardScore(input, rnn_hidden_left);
 				_rnn_right.ComputeForwardScore(input, rnn_hidden_right);
@@ -274,7 +274,7 @@ public:
 				_rnn_left.ComputeBackwardLoss(input, rnn_hidden_left, rnn_hidden_leftLoss, inputLoss);
 				_rnn_right.ComputeBackwardLoss(input, rnn_hidden_right, rnn_hidden_rightLoss, inputLoss);
 
-				windowlized_backward(wordrepresentLoss, inputLoss, window);
+				windowlized_backward(wordrepresentLoss, inputLoss, curcontext);
 
 				//word representation
 				for (int idy = 0; idy < word_num; idy++) {
@@ -408,7 +408,7 @@ public:
 				wordrepresent[idy] += wordprime[idy];
 			}
 
-			windowlized(wordrepresent, input, window);
+			windowlized(wordrepresent, input, curcontext);
 
 			_rnn_left.ComputeForwardScore(input, rnn_hidden_left);
 			_rnn_right.ComputeForwardScore(input, rnn_hidden_right);
@@ -540,7 +540,7 @@ public:
 				wordrepresent[idy] += wordprime[idy];
 			}
 
-			windowlized(wordrepresent, input, window);
+			windowlized(wordrepresent, input, curcontext);
 
 			_rnn_left.ComputeForwardScore(input, rnn_hidden_left);
 			_rnn_right.ComputeForwardScore(input, rnn_hidden_right);
@@ -643,7 +643,7 @@ public:
 	}
 
 	inline void setWordEmbFinetune(bool b_wordEmb_finetune) {
-		_b_wordEmb_finetune = b_wordEmb_finetune;
+		_words.setEmbFineTune(b_wordEmb_finetune);
 	}
 
 	inline void resetRemove(int remove) {

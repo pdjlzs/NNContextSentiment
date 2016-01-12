@@ -82,7 +82,7 @@ public:
 
     _cnn_project.initial(_wordHiddenSize, _word_cnn_iSize, true, 30, 0);
     _tanh_project.initial(_hiddenSize, _poolmanners * _wordHiddenSize, true, 50, 0);
-    _olayer_linear.initial(_labelSize, hiddenSize, false, 60, 2);
+    _olayer_linear.initial(_labelSize, _hiddenSize, false, 60, 2);
 
     _eval.reset();
 
@@ -188,7 +188,7 @@ public:
           wordrepresent[idy] += wordprime[idy];
         }
 
-        windowlized(wordrepresent, input, window);
+        windowlized(wordrepresent, input, curcontext);
 
         //word convolution
         for (int idy = 0; idy < word_num; idy++) {
@@ -248,7 +248,7 @@ public:
         }
 
 
-        windowlized_backward(wordrepresentLoss, inputLoss, window);
+        windowlized_backward(wordrepresentLoss, inputLoss, curcontext);
 
         //word representation
         for (int idy = 0; idy < word_num; idy++) {
@@ -361,7 +361,7 @@ public:
         wordrepresent[idy] +=  wordprime[idy];
       }
 
-      windowlized(wordrepresent, input, window);
+      windowlized(wordrepresent, input, curcontext);
 
       //word convolution
       for (int idy = 0; idy < word_num; idy++) {
@@ -472,7 +472,7 @@ public:
         wordrepresent[idy] +=  wordprime[idy];
       }
 
-      windowlized(wordrepresent, input, window);
+      windowlized(wordrepresent, input, curcontext);
 
       //word convolution
       for (int idy = 0; idy < word_num; idy++) {
@@ -554,7 +554,7 @@ public:
   }
 
   inline void setWordEmbFinetune(bool b_wordEmb_finetune) {
-    _b_wordEmb_finetune = b_wordEmb_finetune;
+	  _words.setEmbFineTune(b_wordEmb_finetune);
   }
 
   inline void resetRemove(int remove) {

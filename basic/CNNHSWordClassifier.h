@@ -254,7 +254,7 @@ public:
             inputLoss[idx][idy] += hiddenLoss[idx][idy];
         }
 
-        windowlized_backward(wordprimeLoss[idx], inputLoss[idx], curcontext);
+        windowlized_backward(wordrepresentLoss[idx], inputLoss[idx], curcontext);
 
         //word representation
         for (int idy = 0; idy < word_num; idy++) {
@@ -582,7 +582,7 @@ public:
   }
 
   inline void setWordEmbFinetune(bool b_wordEmb_finetune) {
-    _b_wordEmb_finetune = b_wordEmb_finetune;
+    _words.setEmbFineTune(b_wordEmb_finetune);
   }
 
   inline void resetRemove(int remove) {

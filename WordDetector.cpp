@@ -19,6 +19,7 @@ Labeler::Labeler() {
 
 Labeler::~Labeler() {
   // TODO Auto-generated destructor stub
+  m_classifier.release();
 }
 
 int Labeler::createAlphabet(const vector<Instance>& vecInsts) {
@@ -475,7 +476,7 @@ void Labeler::train(const string& trainFile, const string& devFile, const string
         }
         int curUpdateIter = iter * m_options.verboseIter + updateIter;
         cost += m_classifier.process(subExamples, curUpdateIter);
-       //m_classifier.checkgrads(subExamples, curUpdateIter);
+        //m_classifier.checkgrads(subExamples, curUpdateIter);
         eval.overall_label_count += m_classifier._eval.overall_label_count;
         eval.correct_label_count += m_classifier._eval.correct_label_count;
 
@@ -569,89 +570,6 @@ void Labeler::train(const string& trainFile, const string& devFile, const string
     // Clear gradients
   }
 
-  if (devNum > 0) {
-    bCurIterBetter = false;
-    if (!m_options.outBest.empty())
-      decodeInstResults.clear();
-    metric_dev.reset();
-    for (int idx = 0; idx < devExamples.size(); idx++) {
-      string result_label;
-      dtype confidence = predict(devExamples[idx].m_linears, devExamples[idx].m_features, result_label);
-
-      devInsts[idx].Evaluate(result_label, metric_dev);
-
-      if (!m_options.outBest.empty()) {
-        curDecodeInst.copyValuesFrom(devInsts[idx]);
-        curDecodeInst.assignLabel(result_label, confidence);
-        decodeInstResults.push_back(curDecodeInst);
-      }
-    }
-    metric_dev.print();
-
-    if ((!m_options.outBest.empty() && metric_dev.getAccuracy() > bestDIS)) {
-      m_pipe.outputAllInstances(devFile + m_options.outBest, decodeInstResults);
-      bCurIterBetter = true;
-    }
-
-    if (testNum > 0) {
-      if (!m_options.outBest.empty())
-        decodeInstResults.clear();
-      metric_test.reset();
-      for (int idx = 0; idx < testExamples.size(); idx++) {
-        string result_label;
-        dtype confidence = predict(testExamples[idx].m_linears, testExamples[idx].m_features, result_label);
-        testInsts[idx].Evaluate(result_label, metric_test);
-
-        if (bCurIterBetter && !m_options.outBest.empty()) {
-          curDecodeInst.copyValuesFrom(testInsts[idx]);
-          curDecodeInst.assignLabel(result_label, confidence);
-          decodeInstResults.push_back(curDecodeInst);
-        }
-      }
-      std::cout << "test:" << std::endl;
-      metric_test.print();
-
-      if ((!m_options.outBest.empty() && bCurIterBetter)) {
-        m_pipe.outputAllInstances(testFile + m_options.outBest, decodeInstResults);
-      }
-    }
-
-    for (int idx = 0; idx < otherExamples.size(); idx++) {
-      std::cout << "processing " << m_options.testFiles[idx] << std::endl;
-      if (!m_options.outBest.empty())
-        decodeInstResults.clear();
-      metric_test.reset();
-      for (int idy = 0; idy < otherExamples[idx].size(); idy++) {
-        string result_label;
-        dtype confidence = predict(otherExamples[idx][idy].m_linears, otherExamples[idx][idy].m_features, result_label);
-
-        otherInsts[idx][idy].Evaluate(result_label, metric_test);
-
-        if (bCurIterBetter && !m_options.outBest.empty()) {
-          curDecodeInst.copyValuesFrom(otherInsts[idx][idy]);
-          curDecodeInst.assignLabel(result_label, confidence);
-          decodeInstResults.push_back(curDecodeInst);
-        }
-      }
-      std::cout << "test:" << std::endl;
-      metric_test.print();
-
-      if ((!m_options.outBest.empty() && bCurIterBetter)) {
-        m_pipe.outputAllInstances(m_options.testFiles[idx] + m_options.outBest, decodeInstResults);
-      }
-    }
-
-    if ((m_options.saveIntermediate && metric_dev.getAccuracy() > bestDIS)) {
-      if (metric_dev.getAccuracy() > bestDIS) {
-        std::cout << "Exceeds best previous performance of " << bestDIS << ". Saving model file.." << std::endl;
-        bestDIS = metric_dev.getAccuracy();
-      }
-      writeModelFile(modelFile);
-    }
-
-  } else {
-    writeModelFile(modelFile);
-  }
 }
 
 dtype Labeler::predict(const vector<int>& linears, const vector<Feature>& features, string& output) {
