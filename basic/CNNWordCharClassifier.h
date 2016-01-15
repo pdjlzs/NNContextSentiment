@@ -1,12 +1,12 @@
 /*
- * CNNWordClassifier.h
+ * CNNWordCharClassifier.h
  *
  *  Created on: Mar 18, 2015
  *      Author: mszhang
  */
 
-#ifndef SRC_CNNWordClassifier_H_
-#define SRC_CNNWordClassifier_H_
+#ifndef SRC_CNNWordCharClassifier_H_
+#define SRC_CNNWordCharClassifier_H_
 
 #include <iostream>
 
@@ -930,4 +930,4 @@ public:
 
 };
 
-#endif /* SRC_CNNWordClassifier_H_ */
+#endif /* SRC_CNNWordCharClassifier_H_ */

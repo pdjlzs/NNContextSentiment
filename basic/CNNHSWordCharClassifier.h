@@ -1,12 +1,12 @@
 /*
- * CNNHSWordClassifier.h
+ * CNNHSWordCharClassifier.h
  *
  *  Created on: Mar 18, 2015
  *      Author: mszhang
  */
 
-#ifndef SRC_CNNHSWordClassifier_H_
-#define SRC_CNNHSWordClassifier_H_
+#ifndef SRC_CNNHSWordCharClassifier_H_
+#define SRC_CNNHSWordCharClassifier_H_
 
 #include <iostream>
 
@@ -1104,4 +1104,4 @@ public:
 
 };
 
-#endif /* SRC_CNNHSWordClassifier_H_ */
+#endif /* SRC_CNNHSWordCharClassifier_H_ */
