@@ -18,6 +18,7 @@ Labeler::Labeler() {
 
 Labeler::~Labeler() {
   // TODO Auto-generated destructor stub
+  m_classifier.release();
 }
 
 int Labeler::createAlphabet(const vector<Instance>& vecInsts) {
