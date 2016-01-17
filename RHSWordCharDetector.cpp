@@ -408,7 +408,8 @@ void Labeler::train(const string& trainFile, const string& devFile, const string
   charhEmb.resize(m_charAlphabet.size(), m_options.charEmbSize);
   charhEmb.randu(1001);
 
-  m_classifier.init(wordEmb, wordhEmb, charEmb, charhEmb, m_options.wordcontext, m_options.charcontext, m_labelAlphabet.size(), m_options.wordHiddenSize, m_options.charHiddenSize, m_options.hiddenSize);
+  m_classifier.init(wordEmb, wordhEmb, charEmb, charhEmb, m_options.wordcontext, m_options.charcontext, m_labelAlphabet.size(), m_options.wordHiddenSize,
+      m_options.charHiddenSize, m_options.hiddenSize);
   m_classifier.resetRemove(m_options.removePool);
   m_classifier.setDropValue(m_options.dropProb);
   m_classifier.setWordEmbFinetune(m_options.wordEmbFineTune);
@@ -483,7 +484,7 @@ void Labeler::train(const string& trainFile, const string& devFile, const string
         }
         int curUpdateIter = iter * m_options.verboseIter + updateIter;
         cost += m_classifier.process(subExamples, curUpdateIter);
-       //m_classifier.checkgrads(subExamples, curUpdateIter);
+        //m_classifier.checkgrads(subExamples, curUpdateIter);
         eval.overall_label_count += m_classifier._eval.overall_label_count;
         eval.correct_label_count += m_classifier._eval.correct_label_count;
 
