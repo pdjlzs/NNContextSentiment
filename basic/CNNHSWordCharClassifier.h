@@ -448,6 +448,7 @@ public:
           //char_poolmergeLoss[idy] = 0.0;
         }
 
+        //dropout
         if (idx == seq_size - 1) {
           if (_words.bEmbFineTune()) {
             for (int idy = 0; idy < word_num; idy++) {
@@ -494,6 +495,7 @@ public:
           windowlized_backward(charprimeLoss[idx][idy], char_inputLoss[idx][idy], char_curcontext);
         }
 
+        //dropout
         if (idx == seq_size - 1) {
           if (_chars.bEmbFineTune()) {
             for (int idy = 0; idy < word_num; idy++) {

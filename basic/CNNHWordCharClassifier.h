@@ -426,6 +426,7 @@ public:
           //char_poolmergeLoss[idy] = 0.0;
         }
 
+        //dropout
         if (_words.bEmbFineTune()) {
           for (int idy = 0; idy < word_num; idy++) {
             wordprimeLoss[idx][idy] = wordprimeLoss[idx][idy] * wordprimeMask[idx][idy];
@@ -461,6 +462,7 @@ public:
           windowlized_backward(charprimeLoss[idx][idy], char_inputLoss[idx][idy], char_curcontext);
         }
 
+        //dropout
         if (_chars.bEmbFineTune()) {
           for (int idy = 0; idy < word_num; idy++) {
             int char_num = feature.chars[idy].size();
