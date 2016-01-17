@@ -621,13 +621,13 @@ public:
 		checkgrad(this, examples, _cnn_project._W, _cnn_project._gradW, "_cnn_project._W", iter);
 		checkgrad(this, examples, _cnn_project._b, _cnn_project._gradb, "_cnn_project._b", iter);
 
-		checkgrad(this, examples, _rnn_left.rnn._WL, _rnn_left.rnn._gradWL, "_rnn_left.rnn._WL", iter);
-		checkgrad(this, examples, _rnn_left.rnn.rnn._WR, _rnn_left.rnn._gradWR, "_rnn_left.rnn._WR", iter);
-		checkgrad(this, examples, _rnn_left.rnn._b, _rnn_left.rnn._gradb, "_rnn_left.rnn._b", iter);
+		checkgrad(this, examples, _rnn_left._rnn._WL, _rnn_left._rnn._gradWL, "_rnn_left._rnn._WL", iter);
+		checkgrad(this, examples, _rnn_left._rnn._WR, _rnn_left._rnn._gradWR, "_rnn_left._rnn._WR", iter);
+		checkgrad(this, examples, _rnn_left._rnn._b, _rnn_left._rnn._gradb, "_rnn_left._rnn._b", iter);
 
-		checkgrad(this, examples, _rnn_right.rnn._WL, _rnn_right.rnn._gradWL, "_rnn_right.rnn._WL", iter);
-		checkgrad(this, examples, _rnn_right.rnn._WR, _rnn_right.rnn._gradWR, "_rnn_right.rnn._WR", iter);
-		checkgrad(this, examples, _rnn_right.rnn._b, _rnn_right.rnn._gradb, "_rnn_right.rnn._b", iter);
+		checkgrad(this, examples, _rnn_right._rnn._WL, _rnn_right._rnn._gradWL, "_rnn_right._rnn._WL", iter);
+		checkgrad(this, examples, _rnn_right._rnn._WR, _rnn_right._rnn._gradWR, "_rnn_right._rnn._WR", iter);
+		checkgrad(this, examples, _rnn_right._rnn._b, _rnn_right._rnn._gradb, "_rnn_right._rnn._b", iter);
 
 		checkgrad(this, examples, _words._E, _words._gradE, "_words._E", iter, _words._indexers);
 
