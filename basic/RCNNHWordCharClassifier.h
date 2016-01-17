@@ -707,9 +707,9 @@ public:
         charprime[idx][idy] = NewTensor<xpu>(Shape3(char_num, 1, _charDim), d_zero);
 
         char_input[idx][idy] = NewTensor<xpu>(Shape3(char_num, 1, char_cnn_iSize), d_zero);
-        char_rnn_hidden_left[idy][idx] = NewTensor<xpu>(Shape3(char_num, 1, charHiddenSize), d_zero);
-        char_rnn_hidden_right[idy][idx] = NewTensor<xpu>(Shape3(char_num, 1, charHiddenSize), d_zero);
-        char_midhidden[idy][idx] = NewTensor<xpu>(Shape3(char_num, 1, 2 * charHiddenSize), d_zero);
+        char_rnn_hidden_left[idx][idy] = NewTensor<xpu>(Shape3(char_num, 1, charHiddenSize), d_zero);
+        char_rnn_hidden_right[idx][idy] = NewTensor<xpu>(Shape3(char_num, 1, charHiddenSize), d_zero);
+        char_midhidden[idx][idy] = NewTensor<xpu>(Shape3(char_num, 1, 2 * charHiddenSize), d_zero);
         char_hidden[idx][idy] = NewTensor<xpu>(Shape3(char_num, 1, charHiddenSize), d_zero);
 
         for (int idz = 0; idz < _poolmanners; idz++) {
