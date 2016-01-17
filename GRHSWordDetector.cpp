@@ -18,6 +18,7 @@ Labeler::Labeler() {
 
 Labeler::~Labeler() {
   // TODO Auto-generated destructor stub
+  m_classifier.release();
 }
 
 int Labeler::createAlphabet(const vector<Instance>& vecInsts) {
@@ -404,7 +405,7 @@ void Labeler::train(const string& trainFile, const string& devFile, const string
   }
 
   NRMat<dtype> charhEmb;
-  charhEmb.resize(m_charAlphabet.size(), m_options.wordEmbSize);
+  charhEmb.resize(m_charAlphabet.size(), m_options.charEmbSize);
   charhEmb.randu(1001);
 
   m_classifier.init(wordEmb, wordhEmb, m_options.wordcontext, m_labelAlphabet.size(), m_options.wordHiddenSize, m_options.hiddenSize);
