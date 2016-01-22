@@ -46,9 +46,9 @@ public:
 
 
 #if USE_CUDA==1
-  RCNNHSWordClassifier<gpu> m_classifier;
+  RCNNHSWordCharClassifier<gpu> m_classifier;
 #else
-  RCNNHSWordClassifier<cpu> m_classifier;
+  RCNNHSWordCharClassifier<cpu> m_classifier;
 #endif
 
 

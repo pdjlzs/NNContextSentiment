@@ -40,9 +40,9 @@ public:
   int m_linearfeat;
 
 #if USE_CUDA==1
-  GRCNNHWordClassifier<gpu> m_classifier;
+  GRCNNHWordCharClassifier<gpu> m_classifier;
 #else
-  GRCNNHWordClassifier<cpu> m_classifier;
+  GRCNNHWordCharClassifier<cpu> m_classifier;
 #endif
 
 public:

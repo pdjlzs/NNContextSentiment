@@ -22,14 +22,14 @@ using namespace mshadow;
 using namespace mshadow::expr;
 using namespace mshadow::utils;
 
-//A native neural network classfier using only word embeddings
+//A native neural network classfier using word and character embeddings
 template<typename xpu>
-class CNNHSWordClassifier {
+class CNNHSWordCharClassifier {
 public:
-  CNNHSWordClassifier() {
+  CNNHSWordCharClassifier() {
     _dropOut = 0.5;
   }
-  ~CNNHSWordClassifier() {
+  ~CNNHSWordCharClassifier() {
 
   }
 

@@ -46,9 +46,9 @@ public:
 
 
 #if USE_CUDA==1
-  CNNWordClassifier<gpu> m_classifier;
+  CNNWordCharClassifier<gpu> m_classifier;
 #else
-  CNNWordClassifier<cpu> m_classifier;
+  CNNWordCharClassifier<cpu> m_classifier;
 #endif
 
 
